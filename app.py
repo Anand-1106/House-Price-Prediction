@@ -37,8 +37,12 @@ def predict():
     area = request.form.get('flat_area')
     bath = request.form.get('bath')
     # print(location, bhk, bath, area)
-    res = predict_price(location, area, bath, bhk)
-    return render_template("first.html", prediction_text = f"The predicted price is: {round(res, 3)} Lakhs.")
+    try:
+        res = predict_price(location, area, bath, bhk)
+        return render_template("first.html", prediction_text = f"The predicted price is: {round(res, 3)} Lakhs.")
+    except:
+        return render_template("first.html", prediction_text = f"Sorry location is not available.")
+        
 
 
 
