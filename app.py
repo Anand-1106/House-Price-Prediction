@@ -1,6 +1,6 @@
 import pickle
 import numpy as np 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 
 loaded_model = pickle.load(open('finalized_model.pkl', 'rb'))
@@ -30,18 +30,21 @@ app = Flask(__name__,template_folder='templates')
 def hello_world():
     return render_template('first.html')
 
-@app.route("/predict",methods=['POST'])
+@app.route("/predict",methods=['GET', 'POST'])
 def predict():
-    bhk = request.form.get('bhk')
-    location = request.form.get('location')
-    area = request.form.get('flat_area')
-    bath = request.form.get('bath')
-    # print(location, bhk, bath, area)
-    try:
-        res = predict_price(location, area, bath, bhk)
-        return render_template("first.html", prediction_text = f"The predicted price is: {round(res, 3)} Lakhs.")
-    except:
-        return render_template("first.html", prediction_text = f"Sorry location is not available.")
+    if request.method=='POST':
+        bhk = request.form.get('bhk')
+        location = request.form.get('location')
+        area = request.form.get('flat_area')
+        bath = request.form.get('bath')
+        # print(location, bhk, bath, area)
+        try:
+            res = predict_price(location, area, bath, bhk)
+            return render_template("first.html", prediction_text = f"The predicted price is: {round(res, 3)} Lakhs.")
+        except:
+            return render_template("first.html", prediction_text = f"Sorry location is not available.")
+    else:
+        return redirect(url_for('/'))
         
 
 
