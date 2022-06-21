@@ -2,3 +2,4 @@ numpy
 Werkzeug
 gunicorn
 flask
+sklearn
