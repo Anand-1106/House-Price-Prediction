@@ -3,3 +3,4 @@ Werkzeug
 gunicorn
 flask
 sklearn
+pandas
