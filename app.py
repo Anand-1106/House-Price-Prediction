@@ -44,7 +44,7 @@ def predict():
         except:
             return render_template("first.html", prediction_text = f"Sorry location is not available.")
     else:
-        return redirect(url_for('hello_world))
+        return redirect(url_for('hello_world'))
         
 
 
