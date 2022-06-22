@@ -150,7 +150,7 @@
         var full_code = ""
         for (let i = 0; i < col_names.length; i++){
             // console.log(col_names[i])
-            var html_text = '<option value=' + col_names[i] + '>' + col_names[i]+'</option>'
+            var html_text =  `<option value= "${col_names[i]}"  > ${ col_names[i]} </option>`
             full_code += html_text;
         }
         document.getElementById("location").innerHTML = full_code
