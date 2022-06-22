@@ -42,7 +42,7 @@ def predict():
             res = predict_price(location, area, bath, bhk)
             return render_template("first.html", prediction_text = f"The predicted price is: {round(res, 3)} Lakhs.")
         except:
-            return render_template("first.html", prediction_text = f"Sorry location is not available.")
+            return render_template("first.html", prediction_text = f"Sorry location {location} is not available.")
     else:
         return redirect(url_for('hello_world'))
         
